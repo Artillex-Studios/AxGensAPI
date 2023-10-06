@@ -72,6 +72,10 @@ public class Generator {
         // opens the generator gui
     }
 
+    public void tryUpgrade(@NotNull Player player) {
+        // try to upgrade
+    }
+
     public void setId(int id) {
         this.id = id;
     }
