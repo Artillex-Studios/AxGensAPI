@@ -5,6 +5,7 @@ import com.artillexstudios.axgens.hooks.impl.hologram.HologramHook;
 import com.artillexstudios.axgens.hooks.impl.level.LevelsHook;
 import com.artillexstudios.axgens.hooks.impl.protection.ProtectionHook;
 import com.artillexstudios.axgens.hooks.impl.shop.PricesHook;
+import com.artillexstudios.axgens.hooks.impl.team.TeamHook;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
@@ -18,6 +19,7 @@ public class HookManager {
     private static PricesHook shopPrices = null;
     private static HologramHook holograms = null;
     private static LevelsHook levels = null;
+    private static TeamHook teams = null;
     private static final HashSet<ProtectionHook> PROTECTION_HOOKS = new HashSet<>();
 
     @SuppressWarnings("unused")
@@ -45,6 +47,11 @@ public class HookManager {
         levels = levelHook;
     }
 
+    @SuppressWarnings("unused")
+    public static void registerTeamHook(@NotNull Plugin plugin, @NotNull TeamHook teamHook) {
+        teams = teamHook;
+    }
+
     @Nullable
     public static CurrencyHook getCurrency() {
         return currency;
@@ -63,6 +70,11 @@ public class HookManager {
     @Nullable
     public static LevelsHook getLevels() {
         return levels;
+    }
+
+    @Nullable
+    public static TeamHook getTeams() {
+        return teams;
     }
 
     @SuppressWarnings("BooleanMethodIsAlwaysInverted")

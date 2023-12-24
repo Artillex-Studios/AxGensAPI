@@ -4,13 +4,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.artillexstudios.axgens</groupId>
+    <groupId>com.artillexstudios</groupId>
     <artifactId>AxGensAPI</artifactId>
-    <version>1</version>
+    <version>3</version>
 
     <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -18,7 +18,7 @@
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.20.1-R0.1-SNAPSHOT</version>
+            <version>1.13.2-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -29,4 +29,10 @@
         </dependency>
     </dependencies>
 
+    <distributionManagement>
+        <repository>
+            <id>Artillex-Studios</id>
+            <url>https://repo.artillex-studios.com/releases/</url>
+        </repository>
+    </distributionManagement>
 </project>

@@ -6,6 +6,9 @@ import com.artillexstudios.axgens.hooks.impl.currency.CurrencyHook;
 import com.artillexstudios.axgens.hooks.impl.hologram.HologramHook;
 import com.artillexstudios.axgens.hooks.impl.level.LevelsHook;
 import com.artillexstudios.axgens.hooks.impl.shop.PricesHook;
+import com.artillexstudios.axgens.hooks.impl.team.TeamHook;
+import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.permissions.PermissionAttachmentInfo;
 import org.jetbrains.annotations.NotNull;
@@ -17,35 +20,20 @@ import static com.artillexstudios.axgens.AxGens.CONFIG;
 
 public class AxGensAPI {
 
+    public static int getPlayerGeneratorLimit(@NotNull Player player) {
+        return 0;
+    }
+
     public static int getGeneratorLimit(@NotNull Player player) {
-        boolean hasBypass = false;
+        return 0;
+    }
 
-        int maxGenerators = CONFIG.getInt("default-max-generators");
-        for (PermissionAttachmentInfo effectivePermission : player.getEffectivePermissions()) {
-            if (effectivePermission.getPermission().contains("*")) {
-                hasBypass = true;
-                break;
-            }
-
-            if (player.isOp()) {
-                hasBypass = true;
-                break;
-            }
-
-            if (!effectivePermission.getPermission().startsWith("axgens.limit.")) continue;
-
-            int value = Integer.parseInt(effectivePermission.getPermission().substring(effectivePermission.getPermission().lastIndexOf('.') + 1));
-
-            if (value > maxGenerators) {
-                maxGenerators = value;
-            }
-        }
-
-        return (hasBypass ? 99999 : maxGenerators) + AxGens.getDatabase().getExtraSlots(player.getUniqueId());
+    public static int getPlayerGeneratorPlacedAmount(@NotNull UUID uuid) {
+        return 0;
     }
 
     public static int getGeneratorPlacedAmount(@NotNull UUID uuid) {
-        return AxGens.getDatabase().getPlacedGenerators(uuid);
+        return 0;
     }
 
     public static long getLevel(@NotNull UUID uuid) {
@@ -70,5 +58,10 @@ public class AxGensAPI {
     @Nullable
     public static LevelsHook getLevels() {
         return HookManager.getLevels();
+    }
+
+    @Nullable
+    public static TeamHook getTeams() {
+        return HookManager.getTeams();
     }
 }
