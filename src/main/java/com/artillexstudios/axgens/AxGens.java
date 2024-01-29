@@ -2,7 +2,6 @@ package com.artillexstudios.axgens;
 
 import com.artillexstudios.axgens.config.AbstractConfig;
 import com.artillexstudios.axgens.database.Database;
-import com.artillexstudios.axgens.database.DatabaseQueue;
 import dev.dejvokep.boostedyaml.YamlDocument;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -14,7 +13,6 @@ public final class AxGens extends JavaPlugin {
     public static YamlDocument CONFIG;
     public static YamlDocument TIERS;
     private static AxGens instance;
-    private static DatabaseQueue databaseQueue;
     private static Database database;
 
     public static AbstractConfig getAbstractConfig() {
@@ -27,10 +25,6 @@ public final class AxGens extends JavaPlugin {
 
     public static AbstractConfig getAbstractTiers() {
         return abstractTiers;
-    }
-
-    public static DatabaseQueue getDatabaseQueue() {
-        return databaseQueue;
     }
 
     public static Database getDatabase() {

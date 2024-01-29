@@ -1,8 +1,10 @@
 package com.artillexstudios.axgens.database;
 
 import com.artillexstudios.axgens.generators.Generator;
+import org.bukkit.World;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 public interface Database {
@@ -11,13 +13,13 @@ public interface Database {
 
     void setup();
 
-    void loadAllGenerators();
+    void loadAllGenerators(@NotNull World world);
 
-    int createGenerator(@NotNull Generator generator);
+    void createGenerator(@NotNull Generator generator);
 
     void saveGenerator(@NotNull Generator generator);
 
-    void removeGenerator(int id);
+    void removeGenerator(@NotNull Generator generator);
 
     int getPlacedGenerators(@NotNull UUID uuid);
 
@@ -26,6 +28,8 @@ public interface Database {
     void updateUser(@NotNull UUID uuid, long newLevel);
 
     int getExtraSlots(@NotNull UUID uuid);
+
+    int getExtraSlotsTeam(@NotNull ArrayList<String> uuids);
 
     long getLevel(@NotNull UUID uuid);
 

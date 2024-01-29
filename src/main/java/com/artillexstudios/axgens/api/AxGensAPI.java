@@ -7,16 +7,11 @@ import com.artillexstudios.axgens.hooks.impl.hologram.HologramHook;
 import com.artillexstudios.axgens.hooks.impl.level.LevelsHook;
 import com.artillexstudios.axgens.hooks.impl.shop.PricesHook;
 import com.artillexstudios.axgens.hooks.impl.team.TeamHook;
-import org.bukkit.Bukkit;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
-import org.bukkit.permissions.PermissionAttachmentInfo;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.UUID;
-
-import static com.artillexstudios.axgens.AxGens.CONFIG;
 
 public class AxGensAPI {
 
@@ -37,7 +32,7 @@ public class AxGensAPI {
     }
 
     public static long getLevel(@NotNull UUID uuid) {
-        return AxGens.getDatabase().getLevel(uuid);
+        return 0;
     }
 
     @Nullable

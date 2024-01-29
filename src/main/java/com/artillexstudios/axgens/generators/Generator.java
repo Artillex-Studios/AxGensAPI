@@ -1,8 +1,8 @@
 package com.artillexstudios.axgens.generators;
 
-import com.artillexstudios.axgens.hooks.HookManager;
+import com.artillexstudios.axgens.api.events.GeneratorLoadEvent;
 import com.artillexstudios.axgens.tiers.Tier;
-import com.artillexstudios.axgens.tiers.Tiers;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
@@ -24,6 +24,9 @@ public class Generator {
     private Tier nTier;
     private final ArrayList<String> holoLines = new ArrayList<>();
     private final HashMap<Integer, String> updatingHoloLines = new HashMap<>();
+    boolean hologramSpawned = false;
+
+    public boolean ownerOnline;
 
     public Generator(int id, int tier, @NotNull Location location, @NotNull UUID owner) {
         this.id = id;
@@ -33,47 +36,32 @@ public class Generator {
         this.owner = owner;
         x = location.getBlockX() >> 4;
         z = location.getBlockZ() >> 4;
+        this.ownerOnline = Bukkit.getPlayer(owner) != null;
+
+        GeneratorArea.load(this);
+
         updateTiers();
 
-        if (HookManager.getHolograms() != null)
-            HookManager.getHolograms().createHologram(this, cTier.getHoloLines());
-        updateHologram(true);
+        final GeneratorLoadEvent generatorLoadEvent = new GeneratorLoadEvent(this);
+        Bukkit.getPluginManager().callEvent(generatorLoadEvent);
     }
 
     public void tick() {
-
-    }
-
-    public void run() {
-
     }
 
     public void updateTiers() {
-        cTier = Tiers.getTier(tier);
-        nTier = Tiers.getTier(tier + 1);
-        holoLines.clear();
-
-        for (int i = 0; i < cTier.getHoloLines().size(); i++) {
-            if (cTier.getHoloLines().get(i).contains("%next-spawn%")) {
-                updatingHoloLines.put(i, cTier.getHoloLines().get(i));
-            } else {
-                holoLines.add(cTier.getHoloLines().get(i));
-            }
-        }
-
-        updateHologram(true);
     }
 
     private void updateHologram(boolean full) {
-        // updates the hologram
+    }
+
+    private void run() {
     }
 
     public void openGuiFor(@NotNull Player player) {
-        // opens the generator gui
     }
 
     public void tryUpgrade(@NotNull Player player) {
-        // try to upgrade
     }
 
     public void setId(int id) {
@@ -102,5 +90,30 @@ public class Generator {
 
     public Generator getGenerator() {
         return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Generator generator = (Generator) o;
+
+        if (id != generator.id) return false;
+        return location.equals(generator.location);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + location.hashCode();
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Generator{"
+                + "location=" + location
+                + "}";
     }
 }

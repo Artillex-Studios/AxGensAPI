@@ -15,8 +15,9 @@ public class Tier {
     private final boolean holoEnabled;
     private final double hologramHeight;
     private final List<String> holoLines;
+    private final boolean hideFromShop;
 
-    public Tier(int tier, double price, long levelNeeded, int speed, @NotNull ItemStack genItem, @NotNull ItemStack dropItem, boolean holoEnabled, double hologramHeight, @NotNull List<String> holoLines) {
+    public Tier(int tier, double price, long levelNeeded, int speed, @NotNull ItemStack genItem, @NotNull ItemStack dropItem, boolean holoEnabled, double hologramHeight, @NotNull List<String> holoLines, boolean hideFromShop) {
         this.tier = tier;
         this.price = price;
         this.levelNeeded = levelNeeded;
@@ -26,6 +27,7 @@ public class Tier {
         this.holoEnabled = holoEnabled;
         this.hologramHeight = hologramHeight;
         this.holoLines = holoLines;
+        this.hideFromShop = hideFromShop;
     }
 
     public int getTier() {
@@ -60,6 +62,10 @@ public class Tier {
 
     public double getHologramHeight() {
         return hologramHeight;
+    }
+
+    public boolean isHiddenFromShop() {
+        return hideFromShop;
     }
 
     @NotNull

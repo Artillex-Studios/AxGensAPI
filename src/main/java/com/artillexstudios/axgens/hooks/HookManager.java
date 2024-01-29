@@ -22,34 +22,34 @@ public class HookManager {
     private static TeamHook teams = null;
     private static final HashSet<ProtectionHook> PROTECTION_HOOKS = new HashSet<>();
 
+    public void setupHooks() {
+    }
+
+    public void updateHooks() {
+    }
+
     @SuppressWarnings("unused")
     public static void registerProtectionHook(@NotNull Plugin plugin, @NotNull ProtectionHook protectionHook) {
-        PROTECTION_HOOKS.add(protectionHook);
     }
 
     @SuppressWarnings("unused")
     public static void registerPriceProviderHook(@NotNull Plugin plugin, @NotNull PricesHook pricesHook) {
-        shopPrices = pricesHook;
     }
 
     @SuppressWarnings("unused")
     public static void registerCurrencyHook(@NotNull Plugin plugin, @NotNull CurrencyHook currencyHook) {
-        currency = currencyHook;
-   }
+    }
 
     @SuppressWarnings("unused")
     public static void registerHologramHook(@NotNull Plugin plugin, @NotNull HologramHook hologramHook) {
-        holograms = hologramHook;
     }
 
     @SuppressWarnings("unused")
     public static void registerLevelHook(@NotNull Plugin plugin, @NotNull LevelsHook levelHook) {
-        levels = levelHook;
     }
 
     @SuppressWarnings("unused")
     public static void registerTeamHook(@NotNull Plugin plugin, @NotNull TeamHook teamHook) {
-        teams = teamHook;
     }
 
     @Nullable
@@ -77,12 +77,7 @@ public class HookManager {
         return teams;
     }
 
-    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     public static boolean canBuildAt(@NotNull Player player, @NotNull Location location) {
-        for (ProtectionHook pm : PROTECTION_HOOKS) {
-            if (!pm.canPlayerBuildAt(player, location)) return false;
-        }
-
         return true;
     }
 }
