@@ -1,5 +1,6 @@
 package com.artillexstudios.axgens.tiers;
 
+import it.unimi.dsi.fastutil.ints.Int2ObjectLinkedOpenHashMap;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -7,11 +8,11 @@ import org.jetbrains.annotations.Nullable;
 import java.util.HashMap;
 
 public class Tiers {
-    private static final HashMap<Integer, Tier> tierMap = new HashMap<>();
+    private static final Int2ObjectLinkedOpenHashMap<Tier> tierMap = new Int2ObjectLinkedOpenHashMap<>();
     private static final HashMap<ItemStack, Double> priceMap = new HashMap<>();
 
     @NotNull
-    public static HashMap<Integer, Tier> getTierMap() {
+    public static Int2ObjectLinkedOpenHashMap<Tier> getTierMap() {
         return tierMap;
     }
 

@@ -1,37 +1,42 @@
 package com.artillexstudios.axgens;
 
-import com.artillexstudios.axgens.config.AbstractConfig;
+import com.artillexstudios.axapi.AxPlugin;
+import com.artillexstudios.axapi.config.Config;
+import com.artillexstudios.axapi.data.ThreadedQueue;
+import com.artillexstudios.axapi.utils.MessageUtils;
 import com.artillexstudios.axgens.database.Database;
-import dev.dejvokep.boostedyaml.YamlDocument;
-import org.bukkit.plugin.java.JavaPlugin;
 
-public final class AxGens extends JavaPlugin {
-    private static AbstractConfig abstractConfig;
-    private static AbstractConfig abstractMessages;
-    private static AbstractConfig abstractTiers;
-    public static YamlDocument MESSAGES;
-    public static YamlDocument CONFIG;
-    public static YamlDocument TIERS;
-    private static AxGens instance;
+public final class AxGens extends AxPlugin {
+    public static Config CONFIG;
+    public static Config EVENTS;
+    public static Config GUIS;
+    public static Config HOOKS;
+    public static Config MESSAGES;
+    public static Config SELLWANDS;
+    public static Config TIERS;
+    public static MessageUtils MESSAGEUTILS;
+    private static AxPlugin instance;
+    private static ThreadedQueue<Runnable> threadedQueue;
     private static Database database;
 
-    public static AbstractConfig getAbstractConfig() {
-        return abstractConfig;
-    }
-
-    public static AbstractConfig getAbstractMessages() {
-        return abstractMessages;
-    }
-
-    public static AbstractConfig getAbstractTiers() {
-        return abstractTiers;
+    public static ThreadedQueue<Runnable> getThreadedQueue() {
+        return threadedQueue;
     }
 
     public static Database getDatabase() {
         return database;
     }
 
-    public static AxGens getInstance() {
+    public static AxPlugin getInstance() {
         return instance;
+    }
+
+    public void load() {
+    }
+
+    public void enable() {
+    }
+
+    public void disable() {
     }
 }

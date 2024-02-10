@@ -2,6 +2,7 @@ package com.artillexstudios.axgens.api.events;
 
 import com.artillexstudios.axgens.tiers.Tier;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;

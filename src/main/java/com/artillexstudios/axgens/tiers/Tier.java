@@ -25,7 +25,7 @@ public class Tier {
         this.genItem = genItem;
         this.dropItem = dropItem;
         this.holoEnabled = holoEnabled;
-        this.hologramHeight = hologramHeight;
+        this.hologramHeight = hologramHeight - 0.5;
         this.holoLines = holoLines;
         this.hideFromShop = hideFromShop;
     }

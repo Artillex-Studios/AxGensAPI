@@ -1,9 +1,7 @@
 package com.artillexstudios.axgens.api;
 
-import com.artillexstudios.axgens.AxGens;
 import com.artillexstudios.axgens.hooks.HookManager;
 import com.artillexstudios.axgens.hooks.impl.currency.CurrencyHook;
-import com.artillexstudios.axgens.hooks.impl.hologram.HologramHook;
 import com.artillexstudios.axgens.hooks.impl.level.LevelsHook;
 import com.artillexstudios.axgens.hooks.impl.shop.PricesHook;
 import com.artillexstudios.axgens.hooks.impl.team.TeamHook;
@@ -43,11 +41,6 @@ public class AxGensAPI {
     @Nullable
     public static PricesHook getShopPrices() {
         return HookManager.getShopPrices();
-    }
-
-    @Nullable
-    public static HologramHook getHolograms() {
-        return HookManager.getHolograms();
     }
 
     @Nullable

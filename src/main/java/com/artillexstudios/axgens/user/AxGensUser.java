@@ -7,12 +7,9 @@ import java.util.UUID;
 public class AxGensUser {
     private int extraSlots;
     private int placed;
-    private final UUID uuid;
+    private UUID uuid;
 
     public AxGensUser(UUID uuid) {
-        this.uuid = uuid;
-        this.extraSlots = AxGens.getDatabase().getExtraSlots(uuid);
-        this.placed = AxGens.getDatabase().getPlacedGenerators(uuid);
     }
 
     public UUID getUuid() {

@@ -2,6 +2,7 @@ package com.artillexstudios.axgens.utils;
 
 import com.artillexstudios.axgens.generators.Generator;
 import org.bukkit.World;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -13,7 +14,7 @@ public class ChunkPos {
     private final int z;
     private volatile boolean ticking = false;
 
-    public ChunkPos(World world, int x, int z) {
+    public ChunkPos(@NotNull World world, int x, int z) {
         this.worldUUID = world.getUID();
         this.x = x;
         this.z = z;

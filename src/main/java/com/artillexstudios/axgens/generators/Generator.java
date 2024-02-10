@@ -1,6 +1,9 @@
 package com.artillexstudios.axgens.generators;
 
+import com.artillexstudios.axapi.hologram.Hologram;
 import com.artillexstudios.axgens.api.events.GeneratorLoadEvent;
+import com.artillexstudios.axgens.guis.impl.CorruptedGui;
+import com.artillexstudios.axgens.guis.impl.UpgradeGui;
 import com.artillexstudios.axgens.tiers.Tier;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -10,6 +13,8 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
+
+import static com.artillexstudios.axgens.AxGens.CONFIG;
 
 public class Generator {
     private int tick = 0;
@@ -24,11 +29,13 @@ public class Generator {
     private Tier nTier;
     private final ArrayList<String> holoLines = new ArrayList<>();
     private final HashMap<Integer, String> updatingHoloLines = new HashMap<>();
-    boolean hologramSpawned = false;
+    private Hologram hologram = null;
+    private boolean broken = false;
+    private Hologram brokenHologram = null;
 
     public boolean ownerOnline;
 
-    public Generator(int id, int tier, @NotNull Location location, @NotNull UUID owner) {
+    public Generator(int id, int tier, @NotNull Location location, @NotNull UUID owner, boolean broken) {
         this.id = id;
         this.tier = tier;
         this.location = location;
@@ -37,6 +44,7 @@ public class Generator {
         x = location.getBlockX() >> 4;
         z = location.getBlockZ() >> 4;
         this.ownerOnline = Bukkit.getPlayer(owner) != null;
+        if (CONFIG.getBoolean("corrupted-generators.enabled", false)) setBroken(broken);
 
         GeneratorArea.load(this);
 
@@ -46,7 +54,7 @@ public class Generator {
         Bukkit.getPluginManager().callEvent(generatorLoadEvent);
     }
 
-    public void tick() {
+    public void tick(double multiplier) {
     }
 
     public void updateTiers() {
@@ -59,6 +67,14 @@ public class Generator {
     }
 
     public void openGuiFor(@NotNull Player player) {
+        if (broken && CONFIG.getBoolean("corrupted-generators.enabled", false)) {
+            new CorruptedGui(player, this).open();
+            return;
+        }
+        new UpgradeGui(player, this).open();
+    }
+
+    public void tryRepair(@NotNull Player player) {
     }
 
     public void tryUpgrade(@NotNull Player player) {
@@ -88,8 +104,31 @@ public class Generator {
         return cTier;
     }
 
+    public Tier getnTier() {
+        return nTier;
+    }
+
     public Generator getGenerator() {
         return this;
+    }
+
+    public boolean isOwnerOnline() {
+        return ownerOnline;
+    }
+
+    public Hologram getHologram() {
+        return hologram;
+    }
+
+    public boolean isBroken() {
+        return broken;
+    }
+
+    public void setBroken(boolean broken) {
+    }
+
+    public Hologram getBrokenHologram() {
+        return brokenHologram;
     }
 
     @Override
