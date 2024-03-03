@@ -1,10 +1,12 @@
 package com.artillexstudios.axgens.api;
 
+import com.artillexstudios.axgens.generators.Generator;
 import com.artillexstudios.axgens.hooks.HookManager;
 import com.artillexstudios.axgens.hooks.impl.currency.CurrencyHook;
 import com.artillexstudios.axgens.hooks.impl.level.LevelsHook;
 import com.artillexstudios.axgens.hooks.impl.shop.PricesHook;
 import com.artillexstudios.axgens.hooks.impl.team.TeamHook;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -31,6 +33,14 @@ public class AxGensAPI {
 
     public static long getLevel(@NotNull UUID uuid) {
         return 0;
+    }
+
+    public static void damageBlock(@NotNull Block block) {
+        // used for break mode, do not remove the block when using this
+    }
+
+    public static void damageBlock(@NotNull Generator generator) {
+        // used for break mode, do not remove the block when using this
     }
 
     @Nullable
