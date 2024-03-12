@@ -3,31 +3,23 @@ package com.artillexstudios.axgens.tiers;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class Tier {
-    private final int tier;
-    private final double price;
-    private final long levelNeeded;
-    private final int speed;
-    private final ItemStack genItem;
-    private final ItemStack dropItem;
-    private final boolean holoEnabled;
-    private final double hologramHeight;
-    private final List<String> holoLines;
-    private final boolean hideFromShop;
+    private int tier;
+    private double price;
+    private long levelNeeded;
+    private int speed;
+    private ItemStack genItem;
+    private HashMap<ItemStack, Double> dropItems;
+    private ItemStack firstDropItem;
+    private boolean holoEnabled;
+    private double hologramHeight;
+    private List<String> holoLines;
+    private boolean hideFromShop;
 
-    public Tier(int tier, double price, long levelNeeded, int speed, @NotNull ItemStack genItem, @NotNull ItemStack dropItem, boolean holoEnabled, double hologramHeight, @NotNull List<String> holoLines, boolean hideFromShop) {
-        this.tier = tier;
-        this.price = price;
-        this.levelNeeded = levelNeeded;
-        this.speed = speed;
-        this.genItem = genItem;
-        this.dropItem = dropItem;
-        this.holoEnabled = holoEnabled;
-        this.hologramHeight = hologramHeight - 0.5;
-        this.holoLines = holoLines;
-        this.hideFromShop = hideFromShop;
+    public Tier(int tier, double price, long levelNeeded, int speed, @NotNull ItemStack genItem, @NotNull HashMap<ItemStack, Double> dropItems, boolean holoEnabled, double hologramHeight, @NotNull List<String> holoLines, boolean hideFromShop) {
     }
 
     public int getTier() {
@@ -47,8 +39,24 @@ public class Tier {
     }
 
     @NotNull
+    @Deprecated(forRemoval = true)
     public ItemStack getDropItem() {
-        return dropItem.clone();
+        return getFirstDropItem();
+    }
+
+    @NotNull
+    public ItemStack getFirstDropItem() {
+        return firstDropItem;
+    }
+
+    @NotNull
+    public HashMap<ItemStack, Double> getDropItems() {
+        return dropItems;
+    }
+
+    @NotNull
+    public ItemStack getRandomDropItem() {
+        return null;
     }
 
     @NotNull
