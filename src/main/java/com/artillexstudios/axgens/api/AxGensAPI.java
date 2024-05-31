@@ -6,8 +6,11 @@ import com.artillexstudios.axgens.hooks.impl.currency.CurrencyHook;
 import com.artillexstudios.axgens.hooks.impl.level.LevelsHook;
 import com.artillexstudios.axgens.hooks.impl.shop.PricesHook;
 import com.artillexstudios.axgens.hooks.impl.team.TeamHook;
+import com.artillexstudios.axgens.tiers.Tier;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -15,8 +18,12 @@ import java.util.UUID;
 
 public class AxGensAPI {
 
-    public static int getPlayerGeneratorLimit(@NotNull Player player) {
+    public static int getPlayerGeneratorLimit(@NotNull OfflinePlayer player) {
         return 0;
+    }
+
+    public static float getPlayerMultiplier(@NotNull OfflinePlayer player) {
+        return 1f;
     }
 
     public static int getGeneratorLimit(@NotNull Player player) {
@@ -33,6 +40,10 @@ public class AxGensAPI {
 
     public static long getLevel(@NotNull UUID uuid) {
         return 0;
+    }
+
+    public static void placeGenerator(@NotNull Player player, Block block, Tier tier, @Nullable ItemStack item, boolean corrupted, boolean force) {
+
     }
 
     public static void damageBlock(@NotNull Block block) {

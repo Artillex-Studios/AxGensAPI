@@ -2,21 +2,19 @@ package com.artillexstudios.axgens.generators;
 
 import com.artillexstudios.axapi.hologram.Hologram;
 import com.artillexstudios.axgens.api.events.GeneratorLoadEvent;
-import com.artillexstudios.axgens.guis.impl.CorruptedGui;
-import com.artillexstudios.axgens.guis.impl.UpgradeGui;
 import com.artillexstudios.axgens.tiers.Tier;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
+import org.bukkit.util.Vector;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.UUID;
 
 import static com.artillexstudios.axgens.AxGens.CONFIG;
 
 public class Generator {
+    private static final Vector ZERO_VECTOR = new Vector(0, 0, 0);
     private int tick = 0;
     private int id;
     private int tier;
@@ -27,12 +25,9 @@ public class Generator {
     private final int z;
     private Tier cTier;
     private Tier nTier;
-    private final ArrayList<String> holoLines = new ArrayList<>();
-    private final HashMap<Integer, String> updatingHoloLines = new HashMap<>();
     private Hologram hologram = null;
     private boolean broken = false;
     private Hologram brokenHologram = null;
-
     public boolean ownerOnline;
 
     public Generator(int id, int tier, @NotNull Location location, @NotNull UUID owner, boolean broken) {
@@ -54,24 +49,17 @@ public class Generator {
         Bukkit.getPluginManager().callEvent(generatorLoadEvent);
     }
 
+    public void tick() {
+        tick(1);
+    }
+
     public void tick(double multiplier) {
     }
 
     public void updateTiers() {
     }
 
-    private void updateHologram(boolean full) {
-    }
-
-    private void run() {
-    }
-
     public void openGuiFor(@NotNull Player player) {
-        if (broken && CONFIG.getBoolean("corrupted-generators.enabled", false)) {
-            new CorruptedGui(player, this).open();
-            return;
-        }
-        new UpgradeGui(player, this).open();
     }
 
     public void tryRepair(@NotNull Player player) {

@@ -7,9 +7,12 @@ import java.util.UUID;
 public class AxGensUser {
     private int extraSlots;
     private int placed;
-    private UUID uuid;
+    private float multiplier;
+    private long level;
+    private final UUID uuid;
 
     public AxGensUser(UUID uuid) {
+        this.uuid = uuid;
     }
 
     public UUID getUuid() {
@@ -38,5 +41,22 @@ public class AxGensUser {
 
     public void addExtraSlots(int amount) {
         this.extraSlots += amount;
+    }
+
+    public float getMultiplier() {
+        return multiplier;
+    }
+
+    public void setMultiplier(float multiplier) {
+        this.multiplier = multiplier;
+    }
+
+    // note: this level is only used for the builtin level system, use the HookManager to get levels
+    public long getLevel() {
+        return level;
+    }
+
+    public void setLevel(long level) {
+        this.level = level;
     }
 }

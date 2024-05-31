@@ -1,6 +1,7 @@
 package com.artillexstudios.axgens.database;
 
 import com.artillexstudios.axgens.generators.Generator;
+import com.artillexstudios.axgens.user.AxGensUser;
 import org.bukkit.World;
 import org.jetbrains.annotations.NotNull;
 
@@ -21,13 +22,19 @@ public interface Database {
 
     void removeGenerator(@NotNull Generator generator);
 
+    void loadUser(@NotNull AxGensUser user);
+
     int getPlacedGenerators(@NotNull UUID uuid);
 
     void updateUser(@NotNull UUID uuid, int newSlots);
 
     void updateUser(@NotNull UUID uuid, long newLevel);
 
+    void updateUser(@NotNull UUID uuid, float multiplier);
+
     int getExtraSlots(@NotNull UUID uuid);
+
+    float getMultiplier(@NotNull UUID uuid);
 
     int getExtraSlotsTeam(@NotNull ArrayList<String> uuids);
 
