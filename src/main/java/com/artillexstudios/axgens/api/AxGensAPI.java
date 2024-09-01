@@ -14,6 +14,7 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
 import java.util.UUID;
 
 public class AxGensAPI {
@@ -59,9 +60,17 @@ public class AxGensAPI {
         return HookManager.getCurrency();
     }
 
-    @Nullable
-    public static PricesHook getShopPrices() {
-        return HookManager.getShopPrices();
+    @NotNull
+    public static List<PricesHook> getShopPrices() {
+        return null;
+    }
+
+    public static double getPrice(ItemStack it) {
+        return -1D;
+    }
+
+    public static double getPrice(@Nullable Player player, ItemStack it) {
+        return -1D;
     }
 
     @Nullable
