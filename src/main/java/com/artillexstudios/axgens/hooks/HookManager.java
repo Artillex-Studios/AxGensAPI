@@ -17,11 +17,11 @@ import java.util.HashSet;
 import java.util.List;
 
 public class HookManager {
-    private static final HashSet<ProtectionHook> PROTECTION_HOOKS = new HashSet<>();
     private static CurrencyHook currency = null;
     private static final List<PricesHook> shopPrices = new ArrayList<>();
     private static LevelsHook levels = null;
     private static TeamHook teams = null;
+    private static final HashSet<ProtectionHook> PROTECTION_HOOKS = new HashSet<>();
 
     public void setupHooks() {
         updateHooks();
@@ -61,11 +61,11 @@ public class HookManager {
     }
 
     public static double getPrice(ItemStack it) {
-        return getPrice(null, it);
+        return -1;
     }
 
     public static double getPrice(@Nullable Player player, ItemStack it) {
-        return -1D;
+        return -1;
     }
 
     @Nullable
@@ -80,10 +80,6 @@ public class HookManager {
 
     @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     public static boolean canBuildAt(@NotNull Player player, @NotNull Location location) {
-        for (ProtectionHook pm : PROTECTION_HOOKS) {
-            if (!pm.canPlayerBuildAt(player, location)) return false;
-        }
-
         return true;
     }
 }

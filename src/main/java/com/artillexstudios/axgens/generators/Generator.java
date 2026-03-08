@@ -1,52 +1,16 @@
 package com.artillexstudios.axgens.generators;
 
 import com.artillexstudios.axapi.hologram.Hologram;
-import com.artillexstudios.axgens.api.events.GeneratorLoadEvent;
 import com.artillexstudios.axgens.tiers.Tier;
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
 import org.bukkit.entity.Player;
-import org.bukkit.util.Vector;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.UUID;
-
-import static com.artillexstudios.axgens.AxGens.CONFIG;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Generator {
-    private static final Vector ZERO_VECTOR = new Vector(0, 0, 0);
-    private int tick = 0;
-    private int id;
-    private int tier;
-    private final Location location;
-    private final Location dropLocation;
-    private final UUID owner;
-    private final int x;
-    private final int z;
-    private Tier cTier;
-    private Tier nTier;
-    private Hologram hologram = null;
-    private boolean broken = false;
-    private Hologram brokenHologram = null;
-    public boolean ownerOnline;
 
-    public Generator(int id, int tier, @NotNull Location location, @NotNull UUID owner, boolean broken) {
-        this.id = id;
-        this.tier = tier;
-        this.location = location;
-        this.dropLocation = location.clone().add(0.5, 1, 0.5);
-        this.owner = owner;
-        x = location.getBlockX() >> 4;
-        z = location.getBlockZ() >> 4;
-        this.ownerOnline = Bukkit.getPlayer(owner) != null;
-        if (CONFIG.getBoolean("corrupted-generators.enabled", false)) setBroken(broken);
-
-        GeneratorArea.load(this);
-
-        updateTiers();
-
-        final GeneratorLoadEvent generatorLoadEvent = new GeneratorLoadEvent(this);
-        Bukkit.getPluginManager().callEvent(generatorLoadEvent);
+    public Generator(int id, int tier, @NotNull Object location, @NotNull UUID owner, boolean broken) {
     }
 
     public void tick() {
@@ -59,6 +23,12 @@ public class Generator {
     public void updateTiers() {
     }
 
+    public void onLoad() {
+    }
+
+    public void onUnload() {
+    }
+
     public void openGuiFor(@NotNull Player player) {
     }
 
@@ -69,31 +39,48 @@ public class Generator {
     }
 
     public void setId(int id) {
-        this.id = id;
     }
 
     public int getId() {
-        return id;
+        return -1;
     }
 
-    public Location getLocation() {
-        return location.clone();
+    public int getTick() {
+        return -1;
+    }
+
+    public Object getLocation() {
+        return null;
+    }
+
+    public void setOwnerOnline(boolean ownerOnline) {
+    }
+
+    public Object getLayer() {
+        return null;
     }
 
     public int getTier() {
-        return tier;
+        return -1;
+    }
+
+    public AtomicBoolean getTicking() {
+        return null;
+    }
+
+    public void setTicking(AtomicBoolean ticking) {
     }
 
     public UUID getOwner() {
-        return owner;
+        return null;
     }
 
     public Tier getcTier() {
-        return cTier;
+        return null;
     }
 
     public Tier getnTier() {
-        return nTier;
+        return null;
     }
 
     public Generator getGenerator() {
@@ -101,46 +88,37 @@ public class Generator {
     }
 
     public boolean isOwnerOnline() {
-        return ownerOnline;
+        return false;
     }
 
     public Hologram getHologram() {
-        return hologram;
+        return null;
     }
 
     public boolean isBroken() {
-        return broken;
+        return false;
+    }
+
+    public double getUpgradePrice() {
+        return -1;
+    }
+
+    public double getRepairPrice() {
+        return -1;
     }
 
     public void setBroken(boolean broken) {
     }
 
+    public void updateBrokenHologram() {
+    }
+
     public Hologram getBrokenHologram() {
-        return brokenHologram;
+        return null;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Generator generator = (Generator) o;
-
-        if (id != generator.id) return false;
-        return location.equals(generator.location);
+    public Object dropLocation() {
+        return null;
     }
 
-    @Override
-    public int hashCode() {
-        int result = id;
-        result = 31 * result + location.hashCode();
-        return result;
-    }
-
-    @Override
-    public String toString() {
-        return "Generator{"
-                + "location=" + location
-                + "}";
-    }
 }

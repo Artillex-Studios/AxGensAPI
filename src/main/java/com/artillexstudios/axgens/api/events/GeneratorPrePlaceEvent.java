@@ -8,6 +8,7 @@ import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public class GeneratorPrePlaceEvent extends Event implements Cancellable {
     private static final HandlerList handlerList = new HandlerList();
@@ -46,7 +47,7 @@ public class GeneratorPrePlaceEvent extends Event implements Cancellable {
         return block;
     }
 
-    @NotNull
+    @Nullable
     public ItemStack getItem() {
         return item;
     }

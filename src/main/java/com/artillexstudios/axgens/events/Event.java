@@ -1,6 +1,6 @@
 package com.artillexstudios.axgens.events;
 
-import org.bukkit.Bukkit;
+import com.artillexstudios.axapi.utils.BossBar;
 import org.bukkit.entity.Player;
 
 public abstract class Event {
@@ -8,40 +8,29 @@ public abstract class Event {
     private final EventConfig config;
     public long endTime;
     public long startTime;
+    protected BossBar bossBar;
 
     public Event(EventConfig config) {
         this.config = config;
     }
 
     protected void start() {
-        setRunning(true);
-
-        onStart();
-
-        for (Player player : Bukkit.getOnlinePlayers()) {
-            apply(player);
-        }
-
     }
 
     public void onStart() {}
 
-    public void apply(Player player) {}
+    public void apply(Player player) {
+    }
 
-    public void unApply(Player player) {}
+    public void unApply(Player player) {
+    }
 
-    public void onCancel() {}
+    public void onCancel() {
+    }
 
     public void tick() {}
 
     protected void cancel() {
-        setRunning(false);
-
-        for (Player player : Bukkit.getOnlinePlayers()) {
-            unApply(player);
-        }
-
-        onCancel();
     }
 
     public boolean isRunning() {

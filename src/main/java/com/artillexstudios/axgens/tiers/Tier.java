@@ -1,5 +1,6 @@
 package com.artillexstudios.axgens.tiers;
 
+import com.artillexstudios.axgens.utils.DropItem;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
@@ -7,51 +8,40 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Tier {
-    private int tier;
-    private double price;
-    private long levelNeeded;
-    private int speed;
-    private ItemStack genItem;
-    private HashMap<ItemStack, Double> dropItems;
-    private ItemStack firstDropItem;
-    private boolean holoEnabled;
-    private double hologramHeight;
-    private List<String> holoLines;
-    private boolean hideFromShop;
 
-    public Tier(int tier, double price, long levelNeeded, int speed, @NotNull ItemStack genItem, @NotNull HashMap<ItemStack, Double> dropItems, boolean holoEnabled, double hologramHeight, @NotNull List<String> holoLines, boolean hideFromShop) {
+    public Tier(int tier, double price, long levelNeeded, int speed, @NotNull ItemStack genItem, @NotNull HashMap<ItemStack, Double> dropItems, boolean holoEnabled, double hologramHeight, @NotNull List<String> holoLines, boolean hideFromShop, boolean buyable) {
+
     }
 
     public int getTier() {
-        return tier;
+        return -1;
     }
 
     public double getPrice() {
-        return price;
+        return -1;
     }
 
     public long getLevelNeeded() {
-        return levelNeeded;
+        return -1;
     }
 
     public int getSpeed() {
-        return speed;
-    }
-
-    @NotNull
-    @Deprecated(forRemoval = true)
-    public ItemStack getDropItem() {
-        return getFirstDropItem();
+        return -1;
     }
 
     @NotNull
     public ItemStack getFirstDropItem() {
-        return firstDropItem;
+        return null;
     }
 
     @NotNull
     public HashMap<ItemStack, Double> getDropItems() {
-        return dropItems;
+        return null;
+    }
+
+    @NotNull
+    public HashMap<DropItem, Double> getCachedDropItems() {
+        return null;
     }
 
     @NotNull
@@ -61,23 +51,35 @@ public class Tier {
 
     @NotNull
     public ItemStack getGenItem() {
-        return genItem.clone();
+        return null;
     }
 
     public boolean isHoloEnabled() {
-        return holoEnabled;
+        return false;
     }
 
     public double getHologramHeight() {
-        return hologramHeight;
+        return -1;
     }
 
     public boolean isHiddenFromShop() {
-        return hideFromShop;
+        return false;
+    }
+
+    public boolean isBuyable() {
+        return false;
     }
 
     @NotNull
     public List<String> getHoloLines() {
-        return holoLines;
+        return null;
+    }
+
+    public double getUpgradePrice() {
+        return -1;
+    }
+
+    public double getRepairPrice() {
+        return -1;
     }
 }

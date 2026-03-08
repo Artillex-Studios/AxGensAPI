@@ -1,41 +1,31 @@
 package com.artillexstudios.axgens.sellwand;
 
-import com.artillexstudios.axapi.libs.boostedyaml.boostedyaml.block.implementation.Section;
+import com.artillexstudios.axapi.libs.boostedyaml.block.implementation.Section;
 import org.jetbrains.annotations.NotNull;
 
 public class Sellwand {
-    private final String type;
-    private final float multiplier;
-    private final int uses;
-    private final long cooldownMilis;
-    private final Section itemSection;
 
     public Sellwand(String type, float multiplier, int uses, long cooldownMilis, Section section) {
-        this.type = type;
-        this.multiplier = multiplier;
-        this.uses = uses;
-        this.cooldownMilis = cooldownMilis;
-        this.itemSection = section;
     }
 
     @NotNull
     public String getType() {
-        return type;
+        return null;
     }
 
     public float getMultiplier() {
-        return multiplier;
+        return -1;
     }
 
     public int getUses() {
-        return uses;
+        return -1;
     }
 
     public long getCooldownMilis() {
-        return cooldownMilis;
+        return -1;
     }
 
     public Section getItemSection() {
-        return itemSection;
+        return null;
     }
 }

@@ -2,11 +2,15 @@ package com.artillexstudios.axgens;
 
 import com.artillexstudios.axapi.AxPlugin;
 import com.artillexstudios.axapi.config.Config;
-import com.artillexstudios.axapi.data.ThreadedQueue;
+import com.artillexstudios.axapi.dependencies.DependencyManagerWrapper;
+import com.artillexstudios.axapi.executor.ThreadedQueue;
 import com.artillexstudios.axapi.utils.MessageUtils;
 import com.artillexstudios.axgens.database.Database;
 
 public final class AxGens extends AxPlugin {
+    public AxGens() {
+    }
+
     public static Config CONFIG;
     public static Config EVENTS;
     public static Config GUIS;
@@ -15,28 +19,32 @@ public final class AxGens extends AxPlugin {
     public static Config SELLWANDS;
     public static Config TIERS;
     public static MessageUtils MESSAGEUTILS;
-    private static AxPlugin instance;
-    private static ThreadedQueue<Runnable> threadedQueue;
-    private static Database database;
 
     public static ThreadedQueue<Runnable> getThreadedQueue() {
-        return threadedQueue;
+        return null;
     }
 
     public static Database getDatabase() {
-        return database;
+        return null;
     }
 
     public static AxPlugin getInstance() {
-        return instance;
+        return null;
     }
 
-    public void load() {
+    @Override
+    public void dependencies(DependencyManagerWrapper manager) {
     }
 
     public void enable() {
     }
 
     public void disable() {
+    }
+
+    public void updateFlags() {
+    }
+
+    public void reload() {
     }
 }

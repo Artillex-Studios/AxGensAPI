@@ -29,11 +29,7 @@ public class Tiers {
 
     @NotNull
     public static Tier getTierNotNull(int tier) {
-        while (!tierMap.containsKey(tier)) {
-            tier--;
-            if (tier < 0) throw new RuntimeException("No tiers have been set");
-        }
-        return tierMap.get(tier);
+        return null;
     }
 
     public static void refreshTiers() {

@@ -4,7 +4,10 @@ public class EventTask {
     private static long lastEvent = System.currentTimeMillis();
     private static long nextEvent = 0;
 
-    public void start() {
+    public static void start() {
+    }
+
+    public static void stop() {
     }
 
     public static long getLastEvent() {
